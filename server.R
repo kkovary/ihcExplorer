@@ -34,7 +34,7 @@ shinyServer(function(input, output, session) {
       rawData()[1:5,1:5] 
     } else{
       input$delim_sub
-      isolate({splitConds()[1:5,1:8]})
+      isolate({splitConds()[1:5,1:5]})
     }
     
     
