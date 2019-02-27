@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyFiles)
 library(fs)
+library(magrittr)
 
 shinyServer(function(input, output, session) {
   volumes <- c(Home = fs::path_home(), "R Installation" = R.home(), getVolumes()())
