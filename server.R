@@ -59,9 +59,9 @@ shinyServer(function(input, output, session) {
     input$delim_sub
     vars = input$Conds %>% strsplit(' ') %>% unlist()
 
-    updateSelectInput(session = session, inputId = "hisHoriz", choices = c(NA,vars))
-    updateSelectInput(session = session, inputId = "hisVert", choices = c(NA,vars))
-    updateSelectInput(session = session, inputId = "hisCol", choices = c(NA,vars))
+    updateSelectInput(session = session, inputId = "hisHoriz", choices = c(NA,'Condition',vars))
+    updateSelectInput(session = session, inputId = "hisVert", choices = c(NA,'Condition',vars))
+    updateSelectInput(session = session, inputId = "hisCol", choices = c(NA,'Condition',vars))
   })
   
   #hist_plot

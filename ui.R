@@ -43,9 +43,9 @@ shinyUI(
                         tags$p('To plot histogram grid, select which variables you would like to use for color
                                and data separation.'),
                         selectInput('hisVar', 'Value to Plot', c(NA), selected = NA),
-                        selectInput('hisHoriz', 'Horizontal Variable', c(NA), selected = NA),
-                        selectInput('hisVert', 'Vertical Variable', c(NA), selected = NA),
-                        selectInput('hisCol', 'Color Variable', c(NA), selected = NA),
+                        selectInput('hisHoriz', 'Horizontal Variable', c(NA,'Condition'), selected = NA),
+                        selectInput('hisVert', 'Vertical Variable', c(NA,'Condition'), selected = NA),
+                        selectInput('hisCol', 'Color Variable', c(NA,'Condition'), selected = NA),
                         actionButton('hist_plot','Plot')
                       ),
                       mainPanel(
