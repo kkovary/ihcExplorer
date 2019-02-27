@@ -56,7 +56,7 @@ shinyServer(function(input, output, session) {
   
   # Update histogram variable options with user defined conditions
   observe({
-    input$delim_sub
+    #input$delim_sub
     vars = input$Conds %>% strsplit(' ') %>% unlist()
 
     updateSelectInput(session = session, inputId = "hisHoriz", choices = c(NA,'Condition',vars))
