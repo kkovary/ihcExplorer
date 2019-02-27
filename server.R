@@ -1,7 +1,8 @@
 library(shiny)
 library(shinyFiles)
 library(fs)
-library(magrittr)
+library(dplyr)
+library(tidyr)
 
 shinyServer(function(input, output, session) {
   volumes <- c(Home = fs::path_home(), "R Installation" = R.home(), getVolumes()())
@@ -12,27 +13,35 @@ shinyServer(function(input, output, session) {
     raw = brooks.matlab(parseFilePaths(volumes, input$file)$datapath)
   })
   
-  ## print to console to see how the value of the shinyFiles 
-  ## button changes after clicking and selection
-  observe({
-    cat("\ninput$file value:\n\n")
-    print(input$file)
+  splitConds <- reactive({
+    input$delim_sub
+    isolate({
+      conds = input$Conds %>% strsplit(' ') %>% unlist()
+      rawData() %>% separate(col = Condition, into = conds, sep = input$delim, remove = F) 
+    })
   })
   
   
   ## print to browser
   output$filepaths <- renderPrint({
     parseFilePaths(volumes, input$file)
-    #head(rawData())
   })
   
   output$head <- renderPrint({
+    if(parseFilePaths(volumes, input$file)$name %>% length() == 0){
+      NULL 
+    } else if(parseFilePaths(volumes, input$file)$name %>% length() > 0 & input$delim_sub == 0){
+      rawData()[1:5,1:5] 
+    } else{
+      input$delim_sub
+      isolate({splitConds()[1:5,1:8]})
+    }
     
-    if(parseFilePaths(volumes, input$file)$name %>% length() == 0)
-      NULL
-    else
-    rawData()[1:5,1:8]
     
   })
   
 })
+
+
+
+
