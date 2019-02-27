@@ -47,7 +47,7 @@ shinyServer(function(input, output, session) {
   
   # Update variables that can be choosen to plot the histogram
   observe({
-    if(parseFilePaths(volumes, input$file)$name %>% length() > 0 & input$delim_sub > 0){
+    if(parseFilePaths(volumes, input$file)$name %>% length() > 0){
       updateSelectInput(session = session, inputId = "hisVar", choices = c(NA, colnames(rawData())))
     } else{
       updateSelectInput(session = session, inputId = "hisVar", choices = c(NA))
