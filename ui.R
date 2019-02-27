@@ -38,6 +38,18 @@ shinyUI(
                         tags$hr()
                         )
                       ),
-             tabPanel('Plot Histograms')
+             tabPanel('Plot Histograms',
+                      sidebarPanel(
+                        tags$p('To plot histogram grid, select which variables you would like to use for color
+                               and data separation.'),
+                        selectInput('hisVar', 'Value to Plot', c(NA), selected = NA),
+                        selectInput('hisHoriz', 'Horizontal Variable', c(NA), selected = NA),
+                        selectInput('hisVert', 'Vertical Variable', c(NA), selected = NA),
+                        selectInput('hisCol', 'Color Variable', c(NA), selected = NA),
+                        actionButton('hist_plot','Plot')
+                      ),
+                      mainPanel(
+                        plotOutput("hist")
+                      ))
              )
     )
