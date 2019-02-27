@@ -1,12 +1,15 @@
 library(shiny)
 library(shinyFiles)
 
+source('functions.R')
+
 shinyUI(pageWithSidebar(
   headerPanel(
     "scExplorer"
   ),
   sidebarPanel(
     img(src = 'logo.png', style = "float: left; width: 75px; margin-right: 10px; margin-top: 5px"),
+    
     tags$p("To plot MACKtrack output data, locate the AllData_R.mat file\n
            and input the character used to separate the experimental\n
            conditions"),
@@ -15,10 +18,13 @@ shinyUI(pageWithSidebar(
     shinyFilesButton("file", "File select", "Please select a file", multiple = TRUE),
     tags$hr(),
     tags$p(),
-    tags$p('The file selection button allows the user to select one or several 
-           files and get their absolute position communicated back to the shiny
-           server. In this example the button has been set to single-file mode 
-           and the default path has been set to the users home directory.'),
+    
+    textInput("Conds", "Names of conditions (separated by spaces):"),
+    textInput("delim", "Character to separate conditions:"),
+    actionButton('delim_sub','Submit'),
+    tags$p(),
+    tags$p('After submitting, the table to the right should show new columns
+           that correspond to the desired variables.'),
     tags$hr()
     
     ),
@@ -30,6 +36,7 @@ shinyUI(pageWithSidebar(
                 <code>parseFilePaths()</code> after which the output matches the formatting of\n
                 that returned by shiny's own fileInput widget.")),
     verbatimTextOutput("filepaths"),
+    verbatimTextOutput("head"),
     tags$hr(),
     tags$h4("The output of a folder selection"),
     tags$p(HTML("When a folder is selected the position of the folder is sent to \n
