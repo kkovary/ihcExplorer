@@ -1,6 +1,9 @@
 # ihcExplorer
 Interface to produce various plots of single cell IHC data analyzed through Brooks Taylor's MACKtrack
 
+# Curent Features
+- N/A
+
 # Initial Feature Goals
 - Load in MACKtrack output from server
 - Choose column with conditions from dropdown menu
