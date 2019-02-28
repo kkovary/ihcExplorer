@@ -68,7 +68,7 @@ shinyServer(function(input, output, session) {
     data = rawData()
     input$hist_plot
     isolate({
-      ggplot(data, aes_string(x = input$hisVar, colour = input$hisCol)) + geom_freqpoly(bins = 200) + theme_bw()
+      ggplot(data, aes_string(x = input$hisVar, colour = input$hisCol)) + geom_freqpoly(bins = 200, size = 5) + theme_bw()
     })
     
     
