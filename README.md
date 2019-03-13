@@ -8,6 +8,7 @@ Interface to produce various plots of single cell IHC data analyzed through Broo
 # Initial Feature Goals
 - Choose column with conditions from dropdown menu
 - Create histograms using conditions to describe color and x and or y facets
+- Import segmented images, choose which ones to include/exclude
 
 # Secondary Feature Goals
 - Make bar plots of mean abundances between replicates with standard deviation error bars
